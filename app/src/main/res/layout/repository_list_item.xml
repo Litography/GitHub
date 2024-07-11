@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageViewUserPhoto"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="@string/user_photo"
+        app:layout_constraintBottom_toTopOf="@id/viewFooterLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/user_photo" />
+
+    <TextView
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textViewRepositoryName"
+        app:layout_constraintStart_toEndOf="@id/imageViewUserPhoto"
+        app:layout_constraintTop_toTopOf="@id/imageViewUserPhoto"
+        tools:text="User: Lithography" />
+
+    <TextView
+        android:id="@+id/textViewRepositoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewUserPhoto"
+        app:layout_constraintStart_toEndOf="@id/imageViewUserPhoto"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserName"
+        tools:text="Repo: Android" />
+
+    <View
+        android:id="@+id/viewFooterLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewUserPhoto" />
+
+    <ImageView
+        android:id="@+id/imageViewRepositoryStar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:contentDescription="@string/user_photo"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imageViewRepositoryFork"
+        android:src="@drawable/repo_star" />
+
+    <ImageView
+        android:id="@+id/imageViewRepositoryFork"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="@string/user_photo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/repo_fork" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

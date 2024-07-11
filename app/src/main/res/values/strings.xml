@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GitHub</string>
+    <string name="user_photo">user photo</string>
 </resources>
