@@ -10,6 +10,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:contentDescription="@string/user_photo"
+        android:src="@drawable/user_photo"
         app:layout_constraintBottom_toTopOf="@id/viewFooterLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,12 +49,12 @@
         android:id="@+id/imageViewRepositoryStar"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:contentDescription="@string/user_photo"
         android:layout_marginEnd="40dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/user_photo"
+        android:src="@drawable/repo_star"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/imageViewRepositoryFork"
-        android:src="@drawable/repo_star" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewRepositoryFork"
@@ -61,9 +62,9 @@
         android:layout_height="30dp"
         android:layout_marginEnd="40dp"
         android:contentDescription="@string/user_photo"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/repo_fork"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/repo_fork" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
