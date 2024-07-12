@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.blackstreet.github.core.BaseActivity
 import com.blackstreet.github.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity() {
+class HostActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blackstreet.github.databinding.RepositoryListItemBinding
-import com.blackstreet.github.models.RepositoryItemsModel
 
-class ListRepositoryAdapter(
-    private val data: List<RepositoryItemsModel>
-) : RecyclerView.Adapter<ListRepositoryAdapter.ViewHolder>() {
+class RecyclerViewRepositoryAdapter(
+    private val data: List<Any>
+) : RecyclerView.Adapter<RecyclerViewRepositoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -22,7 +21,7 @@ class ListRepositoryAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
-            binding.textViewUserName.text = data[position].user
+//            binding.textViewUserName.text = data[position].user
         }
     }
 
