@@ -47,6 +47,9 @@ dependencies {
     implementation libs.retrofit
     implementation libs.converter.gson
     implementation libs.koin.android
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
+    implementation(libs.adapter.rxjava2)
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core

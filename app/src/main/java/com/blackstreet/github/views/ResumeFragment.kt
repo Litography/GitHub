@@ -2,8 +2,6 @@ package com.blackstreet.github.views
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,18 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blackstreet.github.adapters.RecyclerViewEndlessAdapter
 import com.blackstreet.github.core.BaseFragment
 import com.blackstreet.github.databinding.FragmentRepositoryBinding
+import com.blackstreet.github.models.Items
 import com.blackstreet.github.viewModels.ResumeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ResumeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentRepositoryBinding
-    private lateinit var arrayList: ArrayList<String?>
     private lateinit var adapter: RecyclerViewEndlessAdapter
 
-    private val resumeViewModel by viewModel<ResumeViewModel>()
+    private val viewModel by viewModel<ResumeViewModel>()
 
+    private var arrayListItems: ArrayList<Items?> = arrayListOf()
     private var isLoading: Boolean = false
+    private var indexPage: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,24 +35,26 @@ class ResumeFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        arrayList = arrayListOf("", "", "", "", "", "", "", "")
-        adapter = RecyclerViewEndlessAdapter(arrayList)
+        adapter = RecyclerViewEndlessAdapter(arrayListItems)
         binding.recyclerViewRepositories.adapter = adapter
+        updateMoreListItems()
     }
 
     override fun initListeners() {
-        with(binding) {
-            recyclerViewRepositories.addOnScrollListener(object :
+        with(binding.recyclerViewRepositories) {
+            addOnScrollListener(object :
                 RecyclerView.OnScrollListener() {
 
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
                     if (isLoading.not()) {
-                        (recyclerViewRepositories.layoutManager as LinearLayoutManager).let {
-                            if (it.findLastCompletelyVisibleItemPosition() == arrayList.size - 1) {
-                                showMoreItems()
-                                isLoading = true
+                        (layoutManager as LinearLayoutManager).apply {
+                            findLastCompletelyVisibleItemPosition().let {
+                                if (it > RECYCLER_VIEW_EMPTY && it == arrayListItems.size - 1) {
+                                    isLoading = true
+                                    updateMoreListItems()
+                                }
                             }
                         }
                     }
@@ -61,29 +63,31 @@ class ResumeFragment : BaseFragment() {
         }
     }
 
-    override fun initObservers() {
-//        resumeViewModel.init()
-    }
-
     @SuppressLint("NotifyDataSetChanged")
-    private fun showMoreItems() {
-        arrayList.add(null)
-        adapter.notifyItemInserted(arrayList.size - 1)
+    override fun initObservers() {
+        viewModel.responseRequest.removeObservers(this)
+        viewModel.responseRequest.observe(this) { response ->
+            arrayListItems.removeAt(arrayListItems.size - 1)
+            adapter.notifyItemRemoved(arrayListItems.size)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            var scrollPosition = arrayList.size
-            val nextLimit = arrayList.size + 5
-
-            arrayList.removeAt(scrollPosition - 1)
-            adapter.notifyItemRemoved(scrollPosition)
-
-            while (scrollPosition - 1 < nextLimit) {
-                arrayList.add("")
-                scrollPosition++
+            response.forEach {
+                arrayListItems.add(it)
             }
 
             adapter.notifyDataSetChanged()
             isLoading = false
-        }, 2000)
+        }
+    }
+
+    private fun updateMoreListItems() {
+        with(arrayListItems) {
+            add(null)
+            adapter.notifyItemInserted(size - 1)
+            viewModel.requestRepositories(++indexPage)
+        }
+    }
+
+    companion object {
+        private const val RECYCLER_VIEW_EMPTY = 0
     }
 }

@@ -5,10 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blackstreet.github.databinding.RepositoryListItemBinding
 import com.blackstreet.github.databinding.ShowLoadingBinding
+import com.blackstreet.github.models.Items
 
 class RecyclerViewEndlessAdapter(
-    private val listData: ArrayList<String?>?
+    private val listRepositoriesItems: ArrayList<Items?>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    override fun getItemViewType(position: Int): Int {
+        listRepositoriesItems.let {
+            if (it[position] == null) return SHOW_LOADING
+        }
+
+        return SHOW_ITEM
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == SHOW_ITEM) ItemViewHolder(
@@ -29,15 +38,7 @@ class RecyclerViewEndlessAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
-            listData?.let {
-                it[position]?.apply {
-                    holder.bind(this)
-                }
-            }
-        }
-
-        if (holder is LoadingViewHolder) {
-            listData?.let {
+            listRepositoriesItems.let {
                 it[position]?.apply {
                     holder.bind(this)
                 }
@@ -45,31 +46,21 @@ class RecyclerViewEndlessAdapter(
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        listData?.let {
-            if (it[position] == null) return SHOW_LOADING
-        }
-
-        return SHOW_ITEM
-    }
-
-    override fun getItemCount() = listData?.size ?: 0
+    override fun getItemCount() = listRepositoriesItems.size
 
     inner class ItemViewHolder(private val binding: RepositoryListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: String) {
-
+        fun bind(repository: Items) {
+            binding.textViewUserName.text = repository.owner.login
+            binding.textViewRepositoryName.text = repository.name
+            binding.textViewRepositoryForks.text = repository.forks.toString()
+            binding.textViewRepositoryStars.text = repository.stargazersCount.toString()
         }
     }
 
-    inner class LoadingViewHolder(private val binding: ShowLoadingBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(data: String) {
-
-        }
-    }
+    inner class LoadingViewHolder(binding: ShowLoadingBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     companion object {
         private const val SHOW_ITEM = 0

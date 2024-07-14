@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ClassifiedRepository(
     @SerializedName("items")
-    val items: List<Items>
+    val items: ArrayList<Items>
 )
 
 data class Items(
