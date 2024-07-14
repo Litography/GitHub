@@ -1,70 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp">
 
     <ImageView
         android:id="@+id/imageViewUserPhoto"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
         android:contentDescription="@string/user_photo"
-        android:src="@drawable/user_photo"
-        app:layout_constraintBottom_toTopOf="@id/viewFooterLine"
+        android:src="@drawable/microsoft_logo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/user_photo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/textViewRepositoryName"
+        android:layout_marginStart="10dp"
+        android:text="Microsoft"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@id/imageViewUserPhoto"
-        app:layout_constraintTop_toTopOf="@id/imageViewUserPhoto"
-        tools:text="User: Lithography" />
+        app:layout_constraintTop_toTopOf="@id/imageViewUserPhoto" />
 
     <TextView
         android:id="@+id/textViewRepositoryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/imageViewUserPhoto"
-        app:layout_constraintStart_toEndOf="@id/imageViewUserPhoto"
-        app:layout_constraintTop_toBottomOf="@id/textViewUserName"
-        tools:text="Repo: Android" />
+        android:text="Repository: Windows Vista"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/textViewUserName"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserName" />
+
+    <TextView
+        android:id="@+id/textViewRepositoryStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Stars: 54,3k"
+        app:layout_constraintStart_toStartOf="@id/textViewRepositoryName"
+        app:layout_constraintTop_toBottomOf="@id/textViewRepositoryName" />
+
+    <TextView
+        android:id="@+id/textViewRepositoryForks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:text="Forks: 154,3k"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@id/textViewRepositoryStars"
+        app:layout_constraintTop_toTopOf="@id/textViewRepositoryStars" />
 
     <View
         android:id="@+id/viewFooterLine"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewUserPhoto" />
-
-    <ImageView
-        android:id="@+id/imageViewRepositoryStar"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="40dp"
-        android:contentDescription="@string/user_photo"
-        android:src="@drawable/repo_star"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/imageViewRepositoryFork"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageViewRepositoryFork"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="40dp"
-        android:contentDescription="@string/user_photo"
-        android:src="@drawable/repo_fork"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/textViewUserName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
