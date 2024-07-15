@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.blackstreet.github.R
 import com.blackstreet.github.adapters.RecyclerViewEndlessAdapter
 import com.blackstreet.github.core.BaseFragment
 import com.blackstreet.github.databinding.FragmentRepositoryBinding
@@ -35,6 +36,7 @@ class ResumeFragment : BaseFragment() {
     }
 
     override fun initViews() {
+        binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         adapter = RecyclerViewEndlessAdapter(arrayListItems)
         binding.recyclerViewRepositories.adapter = adapter
         updateMoreListItems()
@@ -60,6 +62,10 @@ class ResumeFragment : BaseFragment() {
                     }
                 }
             })
+        }
+
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 

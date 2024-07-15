@@ -3,9 +3,11 @@ package com.blackstreet.github.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.blackstreet.github.R
 import com.blackstreet.github.databinding.RepositoryListItemBinding
 import com.blackstreet.github.databinding.ShowLoadingBinding
 import com.blackstreet.github.models.Items
+import com.bumptech.glide.Glide
 
 class RecyclerViewEndlessAdapter(
     private val listRepositoriesItems: ArrayList<Items?>
@@ -51,11 +53,16 @@ class RecyclerViewEndlessAdapter(
     inner class ItemViewHolder(private val binding: RepositoryListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(repository: Items) {
-            binding.textViewUserName.text = repository.owner.login
-            binding.textViewRepositoryName.text = repository.name
-            binding.textViewRepositoryForks.text = repository.forks.toString()
-            binding.textViewRepositoryStars.text = repository.stargazersCount.toString()
+        fun bind(items: Items) {
+            with(binding) {
+                Glide.with(root.context)
+                    .load(items.owner.avatarUrl)
+                    .error(R.drawable.ic_image_not_found)
+                    .into(photo)
+
+                user.text = items.owner.login
+                repository.text = items.name
+            }
         }
     }
 
