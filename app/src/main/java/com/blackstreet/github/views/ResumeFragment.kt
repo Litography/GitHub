@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blackstreet.github.R
@@ -37,7 +38,9 @@ class ResumeFragment : BaseFragment() {
 
     override fun initViews() {
         binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
-        adapter = RecyclerViewEndlessAdapter(arrayListItems)
+        adapter = RecyclerViewEndlessAdapter(arrayListItems) {
+            findNavController().navigate(ResumeFragmentDirections.redirectToDetailsFragment(it))
+        }
         binding.recyclerViewRepositories.adapter = adapter
         updateMoreListItems()
     }

@@ -2,6 +2,7 @@ package com.blackstreet.github
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.findNavController
 import com.blackstreet.github.core.BaseActivity
 import com.blackstreet.github.databinding.ActivityHostBinding
 
@@ -12,7 +13,9 @@ class HostActivity : BaseActivity() {
     private val onBackPressed: OnBackPressedCallback by lazy {
         object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                finish()
+                if (!findNavController(R.id.fragmentContainerView).popBackStack()) {
+                    finish()
+                }
             }
         }
     }

@@ -10,7 +10,8 @@ import com.blackstreet.github.models.Items
 import com.bumptech.glide.Glide
 
 class RecyclerViewEndlessAdapter(
-    private val listRepositoriesItems: ArrayList<Items?>
+    private val listRepositoriesItems: ArrayList<Items?>,
+    private val onClickItem: ((Items) -> Unit)? = null
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
@@ -62,6 +63,10 @@ class RecyclerViewEndlessAdapter(
 
                 user.text = items.owner.login
                 repository.text = items.name
+
+                root.setOnClickListener {
+                    onClickItem?.invoke(items)
+                }
             }
         }
     }
