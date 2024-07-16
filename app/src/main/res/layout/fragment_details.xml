@@ -50,7 +50,7 @@
                     android:id="@+id/photo"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:contentDescription="@string/user_photo"
+                    android:contentDescription="@string/photo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="30dp"
-                    android:contentDescription="@string/user_photo"
+                    android:contentDescription="@string/photo"
                     android:src="@drawable/ic_perfil"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -112,7 +112,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="30dp"
-                    android:contentDescription="@string/user_photo"
+                    android:contentDescription="@string/photo"
                     android:src="@drawable/ic_repository"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divUser" />
@@ -156,7 +156,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="30dp"
-                    android:contentDescription="@string/user_photo"
+                    android:contentDescription="@string/photo"
                     android:src="@drawable/ic_star"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divRepository" />
@@ -200,7 +200,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="30dp"
-                    android:contentDescription="@string/user_photo"
+                    android:contentDescription="@string/photo"
                     android:src="@drawable/ic_fork"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divStars" />

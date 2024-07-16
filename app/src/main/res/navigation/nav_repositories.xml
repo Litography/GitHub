@@ -9,7 +9,7 @@
         android:id="@+id/resumeFragment"
         android:name="com.blackstreet.github.views.ResumeFragment"
         android:label="repository"
-        tools:layout="@layout/fragment_repository" />
+        tools:layout="@layout/fragment_resume" />
 
     <fragment
         android:id="@+id/detailsFragment"

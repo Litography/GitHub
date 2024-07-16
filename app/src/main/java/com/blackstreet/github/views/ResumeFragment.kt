@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blackstreet.github.R
 import com.blackstreet.github.adapters.RecyclerViewEndlessAdapter
 import com.blackstreet.github.core.BaseFragment
-import com.blackstreet.github.databinding.FragmentRepositoryBinding
+import com.blackstreet.github.databinding.FragmentResumeBinding
 import com.blackstreet.github.models.Items
 import com.blackstreet.github.viewModels.ResumeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ResumeFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentRepositoryBinding
+    private lateinit var binding: FragmentResumeBinding
     private lateinit var adapter: RecyclerViewEndlessAdapter
 
     private val viewModel by viewModel<ResumeViewModel>()
@@ -32,7 +32,7 @@ class ResumeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRepositoryBinding.inflate(inflater, container, false)
+        binding = FragmentResumeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
